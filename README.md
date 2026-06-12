@@ -251,7 +251,7 @@ Through this project, you will learn:
 
 # 👨‍💻 Author
 
-Developed by: MLC2 Group-12 Project
+Developed by: Amulya Shrivastava
 
 ---
 
