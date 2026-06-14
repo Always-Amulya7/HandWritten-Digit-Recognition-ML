@@ -219,16 +219,22 @@ Creates a simple and interactive user experience.
                 Upload Your Image.....
             </div>
             <form method="POST" enctype="multipart/form-data">
+                <!--For Application Based Use
                 <label for="fileUpload" class="uploadBox">
-                    <!--
-                    For Application Use
                     {% if image_path %}
                     <img src="{{ url_for('static',
                     filename='Uploads/' +
-                    image_path.split('/')[-1]) }}" alt="Uploaded Image">-->
-                    <!--For Deployment Purposes-->
-                    <img src="{{ url_for('static',
-filename='Uploads/' ~ image_path) }}" alt="Uploaded Image">
+                    image_path.split('/')[-1]) }}" alt="Uploaded Image">
+                    {% else %}
+                    <div class="uploadIcon">
+                        🖼️
+                    </div>
+                    {% endif %}
+                </label>-->
+                <!--When in deployment Use this-->
+                <label for="fileUpload" class="uploadBox">
+                    {% if image_path %}
+                    <img src="{{ url_for('static', filename='Uploads/' ~ image_path) }}" alt="Uploaded Image">
                     {% else %}
                     <div class="uploadIcon">
                         🖼️
