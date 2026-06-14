@@ -342,32 +342,6 @@ def predictDigits(imagePath):
     print("\nFinal Detected Number :",joinedNumber)
     return joinedNumber
 
-
-# Getting Valuable From The Model
-
-# In[12]:
-
-
-## Sample Test
-enteredImage=input("\nEnter Image Path: ")
-
-## Sample Output
-print("The Prediction: ",predictDigits(enteredImage),'\n')
-
-## Multiple Checks
-while True:
-    enteredImage=input("\nEnter Image Path: ")
-    if enteredImage.lower()=="exit":
-        print("Program Stopped.")
-        break
-    print("The Prediction : ",predictDigits(enteredImage),'\n')
-
-
-# Accuracy Graph Of The Model
-
-# In[13]:
-
-
 # Training Accuracy
 plt.figure(figsize=(8,5))
 plt.plot(trainingHistory.history['accuracy'],label='Training Accuracy')
@@ -381,9 +355,6 @@ plt.show()
 
 
 # Loss Graph Of The Model
-
-# In[14]:
-
 
 # Training Loss
 plt.figure(figsize=(8,5))
