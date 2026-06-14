@@ -8,6 +8,11 @@ numpy
 flask
 pytesseract
 seaborn
+opencv-python-headless
+gunicorn
+scikit-learn
+matplotlib
+seaborn
 
 ## Start The CMD
 ## Run The Command- 1) pip install -r Requirements.txt

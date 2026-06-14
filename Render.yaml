@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: HandWritten-Digit-Recognition-System
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
