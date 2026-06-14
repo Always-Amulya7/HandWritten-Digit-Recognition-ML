@@ -354,7 +354,8 @@ def predictDigits(imagePath):
 # FLASK APP
 app = Flask(
     __name__,
-    template_folder="Templates"
+    template_folder="Templates",
+    static_folder="Static"
 )
 uploadFolder="Static/Uploads"
 app.config['UPLOAD_FOLDER']=uploadFolder
@@ -380,8 +381,15 @@ def homePage():
         if uploadedFile:
 
             # Save image
-            savedPath=os.path.join(app.config['UPLOAD_FOLDER'],uploadedFile.filename)
+            savedPath=os.path.join(
+                app.config['UPLOAD_FOLDER'],
+                uploadedFile.filename
+            )
+
             uploadedFile.save(savedPath)
+
+            print("Saved:", savedPath)
+            print("Exists:", os.path.exists(savedPath))
 
             # Fix Windows path
             uploadedImagePath=uploadedFile.filename
@@ -400,8 +408,8 @@ def homePage():
                 detectedOutput=predictDigits(savedPath)
                 detectedType=("Handwritten Digits")
                 
+                
     print("Image Path =", uploadedImagePath)
-    
     return render_template(
         "index.html",
         prediction=detectedOutput,
