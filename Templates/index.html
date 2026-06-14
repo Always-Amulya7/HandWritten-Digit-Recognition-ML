@@ -6,13 +6,14 @@ Creates a simple and interactive user experience.
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         Handwritten Digit Recognition
     </title>
-    <link rel="icon"type="image/png" href="{{ url_for('static',filename='Logo.png') }}" alt="Uploaded Image">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='Logo.png') }}" alt="Uploaded Image">
     <style>
         * {
             margin: 0;
@@ -219,10 +220,15 @@ Creates a simple and interactive user experience.
             </div>
             <form method="POST" enctype="multipart/form-data">
                 <label for="fileUpload" class="uploadBox">
+                    <!--
+                    For Application Use
                     {% if image_path %}
                     <img src="{{ url_for('static',
                     filename='Uploads/' +
-                    image_path.split('/')[-1]) }}" alt="Uploaded Image">
+                    image_path.split('/')[-1]) }}" alt="Uploaded Image">-->
+                    <!--For Deployment Purposes-->
+                    <img src="{{ url_for('static',
+filename='Uploads/' ~ image_path) }}" alt="Uploaded Image">
                     {% else %}
                     <div class="uploadIcon">
                         🖼️

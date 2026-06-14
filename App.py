@@ -16,7 +16,7 @@ import tensorflow as tf
 import cv2
 import numpy as np
 import pytesseract
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
@@ -399,7 +399,9 @@ def homePage():
             else:
                 detectedOutput=predictDigits(savedPath)
                 detectedType=("Handwritten Digits")
-
+                
+    print("Image Path =", uploadedImagePath)
+    
     return render_template(
         "index.html",
         prediction=detectedOutput,
