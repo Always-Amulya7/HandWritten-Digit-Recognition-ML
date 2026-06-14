@@ -352,7 +352,10 @@ def predictDigits(imagePath):
 
 
 # FLASK APP
-app=Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="Templates"
+)
 uploadFolder="Static/Uploads"
 app.config['UPLOAD_FOLDER']=uploadFolder
 
