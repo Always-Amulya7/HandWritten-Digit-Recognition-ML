@@ -166,18 +166,6 @@ os.makedirs("Model",exist_ok=True)
 digitModel.save("Model/Digit_Model.keras")
 print("\nModel Saved Successfully.")
 
-
-# Defining the OCR Path For Scanning
-
-# In[3]:
-
-
-# Tesseract OCR Path
-pytesseract.pytesseract.tesseract_cmd=(
-    r"D:\VS Code Files\B.Tech Journey\3rd Year\6th Semester\MLC2_2341019456\MLC Project\Tesseract OCR\tesseract.exe"
-)
-
-
 # Loading The Trained Model
 
 # In[4]:
@@ -683,7 +671,11 @@ def homePage():
     )
 
 # RUN APPLICATION
-app.run(debug=True,use_reloader=False)
+if __name__=="__main__":
+    app.run(
+        host="0.0.0.0",
+        port=10000
+    )
 
 
 # Developed By- Amulya Shrivastava
