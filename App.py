@@ -16,11 +16,10 @@ import tensorflow as tf
 import cv2
 import numpy as np
 import pytesseract
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, send_from_directory
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
-
 
 # - Loads the MNIST handwritten digit dataset and preprocesses the images for training.
 # - Builds and trains a Convolutional Neural Network (CNN) model for digit recognition.
@@ -363,6 +362,33 @@ app.config['UPLOAD_FOLDER']=uploadFolder
 # Creating upload folder if not exists
 os.makedirs(uploadFolder,exist_ok=True)
 
+
+@app.route("/images")
+def imagesPage():
+    uploads_folder = app.config["UPLOAD_FOLDER"]
+    image_files = [
+        f for f in os.listdir(uploads_folder)
+        if f.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".bmp"))
+    ]
+    preferred_order = [
+        "test_30.png",
+        "test_01.png",
+        "test_29.png",
+        "test_10.png",
+        "test_05.png"
+    ]
+    ordered_images = []
+    for img in preferred_order:
+        if img in image_files:
+            ordered_images.append(img)
+    for img in image_files:
+        if img not in ordered_images:
+            ordered_images.append(img)
+    return render_template(
+        "images.html",
+        images=ordered_images
+    )
+    
 # HOME PAGE
 @app.route("/",methods=["GET","POST"])
 
@@ -415,6 +441,14 @@ def homePage():
         prediction=detectedOutput,
         image_path=uploadedImagePath,
         detected_type=detectedType
+    )
+
+@app.route("/download/<filename>")
+def downloadImage(filename):
+    return send_from_directory(
+        app.config["UPLOAD_FOLDER"],
+        filename,
+        as_attachment=True
     )
 
 # RUN APPLICATION
